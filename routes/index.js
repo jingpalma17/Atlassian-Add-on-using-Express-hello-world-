@@ -35,10 +35,16 @@ module.exports = function (app, addon) {
     });
     
     //test only
-    app.get('/audit-trail', function(req,res){
+    app.get('/audit-trail', addon.checkValidToken(), async function (req, res) {
         res.render('audit-trail', {
             title: 'Audit Trail'
-            //issueId: req.query['issueId']
+        });
+    });
+
+    //test only
+    app.get('/project', addon.authenticate(), function (req, res) {
+        res.render('project-page', {
+            title: 'Project Page'
         });
     });
 

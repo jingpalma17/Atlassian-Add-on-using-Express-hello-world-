@@ -53,17 +53,33 @@
                 "value": "My Configuration Page"
               },
               "location": "jira.agile.board.configuration",
-              "weight": 1
+              "weight": 1,
+              "conditions": [{
+                  "condition": "user_is_logged_in"
+              }]
             }
         ],
         "jiraIssueTabPanels": [
             {
               "key": "my-issue-tab-panels",
               "url": "/audit-trail?issueId={issue.id}&issueKey={issue.key}",
-              "weight": 100,
+              "weight": 1,
               "name": {
                 "value": "Audit Trail"
               }
+            }
+        ],
+        "jiraProjectPages": [
+            {
+              "key": "my-project-page",
+              "name": {
+                "value": "New Project Page"
+              },
+              "url": "/project?projectKey={project.key}&projectId={project.id}",
+              "weight": 1,
+              "conditions": [{
+                  "condition": "user_is_logged_in"
+              }]
             }
         ]
     }
