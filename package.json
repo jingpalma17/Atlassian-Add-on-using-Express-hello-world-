@@ -1,0 +1,24 @@
+{
+  "name": "my-addon",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "AC_OPTS=force-reg,force-dereg node app.js",
+    "debug": "AC_OPTS=force-reg,force-dereg node --nolazy --inspect-brk=9229 app.js"
+  },
+  "dependencies": {
+    "atlassian-connect-express": "^2.0.3",
+    "body-parser": "^1.14.2",
+    "compression": "^1.6.0",
+    "cookie-parser": "^1.4.0",
+    "errorhandler": "^1.4.2",
+    "express": "^4.13.3",
+    "express-hbs": "*",
+    "jugglingdb-sqlite3": "0.0.5",
+    "morgan": "^1.6.1",
+    "static-expiry": ">=0.0.5"
+  },
+  "devDependencies": {
+    "ngrok": "^2.3.0"
+  }
+}
