@@ -44,6 +44,17 @@
                     "condition": "user_is_logged_in"
                 }]
             }
+        ],
+        "webPanels": [
+            {
+              "key": "my-configuration-page",
+              "url": "configuration?id={board.id}&type={board.type}",
+              "name": {
+                "value": "My Configuration Page"
+              },
+              "location": "jira.agile.board.configuration",
+              "weight": 1
+            }
         ]
     }
 }

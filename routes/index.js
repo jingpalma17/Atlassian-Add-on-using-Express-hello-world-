@@ -29,7 +29,10 @@ module.exports = function (app, addon) {
     );
 
     // Add any additional route handlers you need for views or REST resources here...
-
+    //test only
+    app.get('/configuration', function(req,res){
+        res.render("configuration", {id : req.query['id'], type : req.query['type'] });
+    });
 
     // load any additional files you have in routes and apply those to the app
     {
