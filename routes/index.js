@@ -28,21 +28,26 @@ module.exports = function (app, addon) {
         }
     );
 
-    // Add any additional route handlers you need for views or REST resources here...
-    //test only
+    // This is an example route that's used by the default "webPanels" module.
+    // Verify that the incoming request is authenticated with Atlassian Connect
     app.get('/configuration', function(req,res){
+        //this will render the template "configuration.hbs"
         res.render("configuration", {id : req.query['id'], type : req.query['type'] });
     });
     
-    //test only
+    // This is an example route that's used by the default "jiraIssueTabPanels" module.
+    // Verify that the incoming request is authenticated with Atlassian Connect
     app.get('/audit-trail', addon.checkValidToken(), async function (req, res) {
+        //this will render the template "audit-trail'.hbs"
         res.render('audit-trail', {
             title: 'Audit Trail'
         });
     });
 
-    //test only
+    // This is an example route that's used by the default "jiraProjectPages" module.
+    // Verify that the incoming request is authenticated with Atlassian Connect
     app.get('/project', addon.authenticate(), function (req, res) {
+        //this will render the template "project-page'.hbs"
         res.render('project-page', {
             title: 'Project Page'
         });
