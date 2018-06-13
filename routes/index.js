@@ -33,6 +33,14 @@ module.exports = function (app, addon) {
     app.get('/configuration', function(req,res){
         res.render("configuration", {id : req.query['id'], type : req.query['type'] });
     });
+    
+    //test only
+    app.get('/audit-trail', function(req,res){
+        res.render('audit-trail', {
+            title: 'Audit Trail'
+            //issueId: req.query['issueId']
+        });
+    });
 
     // load any additional files you have in routes and apply those to the app
     {

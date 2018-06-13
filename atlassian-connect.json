@@ -55,6 +55,16 @@
               "location": "jira.agile.board.configuration",
               "weight": 1
             }
+        ],
+        "jiraIssueTabPanels": [
+            {
+              "key": "my-issue-tab-panels",
+              "url": "/audit-trail?issueId={issue.id}&issueKey={issue.key}",
+              "weight": 100,
+              "name": {
+                "value": "Audit Trail"
+              }
+            }
         ]
     }
 }
