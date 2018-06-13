@@ -22,7 +22,8 @@ module.exports = function (app, addon) {
             // Rendering a template is easy; the `render()` method takes two params: name of template
             // and a json object to pass the context in
             res.render('hello-world', {
-                title: 'Atlassian Connect'
+                title: 'Atlassian Connect',
+                fullname: "Jingle Palma"
                 //issueId: req.query['issueId']
             });
         }
@@ -32,7 +33,7 @@ module.exports = function (app, addon) {
     // Verify that the incoming request is authenticated with Atlassian Connect
     app.get('/configuration', function(req,res){
         //this will render the template "configuration.hbs"
-        res.render("configuration", {id : req.query['id'], type : req.query['type'] });
+        res.render("configuration", {id : req.query.id, type : req.query.type });
     });
     
     // This is an example route that's used by the default "jiraIssueTabPanels" module.
@@ -40,7 +41,9 @@ module.exports = function (app, addon) {
     app.get('/audit-trail', addon.checkValidToken(), async function (req, res) {
         //this will render the template "audit-trail'.hbs"
         res.render('audit-trail', {
-            title: 'Audit Trail'
+            title: 'Audit Trail',
+            issueKey: req.query.issueKey,
+            issueId: req.query.issueId
         });
     });
 
@@ -49,7 +52,9 @@ module.exports = function (app, addon) {
     app.get('/project', addon.authenticate(), function (req, res) {
         //this will render the template "project-page'.hbs"
         res.render('project-page', {
-            title: 'Project Page'
+            title: 'Project Page',
+            projectKey: req.query.projectKey,
+            projectId: req.query.projectId
         });
     });
 
