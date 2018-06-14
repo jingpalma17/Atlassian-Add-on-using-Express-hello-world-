@@ -9,7 +9,7 @@
   </div>
 </header>
 <button id="dialog-show-button" class="aui-button">Show dialog</button>
-
+<a></a>
 <section id="demo-dialog" class="aui-dialog2 aui-dialog2-small aui-layer" role="dialog" aria-hidden="true">
     <header class="aui-dialog2-header">
         <h2 class="aui-dialog2-header-main">Captain...</h2>
@@ -27,12 +27,39 @@
         </div>
     </footer>
 </section>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
 <script type="text/javascript">
   AJS.$(document).ready(function () {
     $("#dialog-show-button").click(function (e) {
+      AP.dialog.create({
+        key: 'my-dialog',
+        chrome: true,
+        header: 'Sample Dialog'
+      }).on("close", function (closeEventData) {
+        if (closeEventData && closeEventData.saved) {
+          AJS.flag({
+            close: 'never',
+            type: 'info',
+            body: 'Reloading form...'
+          });
+          location.reload();
+        }
+      });
+      /*
       console.log("test");
       e.preventDefault();
-      AJS.$.ajax({
+      return AJS.$.ajax({
         type: 'GET',
         timeout: 30000,
         contentType: 'application/json',
@@ -48,6 +75,7 @@
             AP.dialog.close();
         }, 2500);
       })
+      */
     });
   });
   /*
