@@ -2,7 +2,7 @@
 <header class="aui-page-header">
   <div class="aui-page-header-inner">
     <div class="aui-page-header-main intro-header">
-      <h1>Hello World! {{fullname}}</h1>
+      <h1>Hello {{fullname}}!</h1>
 
       <p class="subtitle">Welcome to {{title}}</p>
     </div>
@@ -29,9 +29,19 @@
     </footer>
 </section>
 <script type="text/javascript">
-
+  $(document).ready(function () {
+    $("#dialog-show-button").click(function (e) {
+      e.preventDefault();
+      AJS.dialog2("#demo-dialog").show();
+    });
+  });
+  /*
+  AJS.toInit(function () {
+    window.alert(99);
+    console.log('helo');
+    alert("hi");
+  });
   AJS.$(document).ready(function () {  
-    console.log("Testing");
     AJS.$("#dialog-show-button").click(function(e) {
         e.preventDefault();
         AJS.dialog2("#demo-dialog").show();
@@ -42,5 +52,5 @@
         e.preventDefault();
         AJS.dialog2("#demo-dialog").hide();
     });
-  });
+  }); */
 </script>

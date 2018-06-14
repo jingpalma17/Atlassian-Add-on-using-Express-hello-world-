@@ -25,7 +25,8 @@ var os = require('os');
 // Anything in ./public is served up as static content
 var staticDir = path.join(__dirname, 'public');
 // Anything in ./views are HBS templates
-var viewsDir = __dirname + '/views';
+var viewsDir = path.join(__dirname, 'views');
+
 // Your routes live here; this is the C in MVC
 var routes = require('./routes');
 // Bootstrap Express
@@ -35,13 +36,13 @@ var addon = ac(app);
 // You can set this in `config.json`
 var port = addon.config.port();
 // Declares the environment to use in `config.json`
-var devEnv = app.get('env') == 'development';
-
+var currentEnv = app.get('env');
+var devEnv = currentEnv === 'development';
 // The following settings applies to all environments
 app.set('port', port);
 
 // Configure the Handlebars view engine
-app.engine('hbs', hbs.express3({partialsDir: viewsDir}));
+app.engine('hbs', hbs.express3({ partialsDir: viewsDir }));
 app.set('view engine', 'hbs');
 app.set('views', viewsDir);
 
@@ -50,7 +51,7 @@ app.set('views', viewsDir);
 app.use(morgan(devEnv ? 'dev' : 'combined'));
 // Include request parsers
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 // Gzip responses when appropriate
 app.use(compression());
@@ -58,16 +59,18 @@ app.use(compression());
 // You need to instantiate the `atlassian-connect-express` middleware in order to get its goodness for free
 app.use(addon.middleware());
 // Enable static resource fingerprinting for far future expires caching in production
-app.use(expiry(app, {dir: staticDir, debug: devEnv}));
+app.use(expiry(app, { dir: staticDir, debug: devEnv }));
 // Add an hbs helper to fingerprint static resource urls
-hbs.registerHelper('furl', function(url){ return app.locals.furl(url); });
+hbs.registerHelper('furl', function (url) { return app.locals.furl(url); });
 // Mount the static resource dir
 app.use(express.static(staticDir));
 
 // AUI scripts from node packages
-//app.use('/hello-world/jquery', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
-//app.use('/hello-world/aui-js', express.static(path.join(__dirname, '/node_modules/@atlassian/aui/dist/aui/js')));
-//app.use('/hello-world/aui-css', express.static(path.join(__dirname, '/node_modules/@atlassian/aui/dist/aui/css')));
+app.use('/assets/moment', express.static(path.join(__dirname, '/node_modules/moment/min')));
+app.use('/assets/lodash', express.static(path.join(__dirname, '/node_modules/lodash')));
+app.use('/assets/jquery', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
+app.use('/assets/aui-js', express.static(path.join(__dirname, '/node_modules/@atlassian/aui/dist/aui/js')));
+app.use('/assets/aui-css', express.static(path.join(__dirname, '/node_modules/@atlassian/aui/dist/aui/css')));
 
 // Show nicer errors when in dev mode
 if (devEnv) app.use(errorHandler());
@@ -76,8 +79,8 @@ if (devEnv) app.use(errorHandler());
 routes(app, addon);
 
 // Boot the damn thing
-http.createServer(app).listen(port, function(){
-  console.log('Add-on server running at http://' + os.hostname() + ':' + port);
+http.createServer(app).listen(port, function () {
+  console.warn('Add-on server running [' + currentEnv + '] at http://' + os.hostname() + ':' + port);
   // Enables auto registration/de-registration of add-ons into a host in dev mode
   if (devEnv) addon.register();
 });
