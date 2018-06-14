@@ -81,6 +81,20 @@
                   "condition": "user_is_logged_in"
               }]
             }
+        ],
+        "dialogs": [
+            {
+              "key": "my-dialog",
+              "url": "/dialog",
+              "options": {
+                "width": "520px",
+                "height": "385px",
+                "chrome": true,
+                "header": {
+                  "value": "Sample Dialog"
+                }
+              }
+            }
         ]
     }
 }

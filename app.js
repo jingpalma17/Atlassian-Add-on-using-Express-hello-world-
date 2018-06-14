@@ -64,6 +64,11 @@ hbs.registerHelper('furl', function(url){ return app.locals.furl(url); });
 // Mount the static resource dir
 app.use(express.static(staticDir));
 
+// AUI scripts from node packages
+//app.use('/hello-world/jquery', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
+//app.use('/hello-world/aui-js', express.static(path.join(__dirname, '/node_modules/@atlassian/aui/dist/aui/js')));
+//app.use('/hello-world/aui-css', express.static(path.join(__dirname, '/node_modules/@atlassian/aui/dist/aui/css')));
+
 // Show nicer errors when in dev mode
 if (devEnv) app.use(errorHandler());
 
