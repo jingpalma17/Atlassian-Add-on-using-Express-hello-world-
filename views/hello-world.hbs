@@ -8,7 +8,6 @@
     </div>
   </div>
 </header>
-
 <button id="dialog-show-button" class="aui-button">Show dialog</button>
 
 <section id="demo-dialog" class="aui-dialog2 aui-dialog2-small aui-layer" role="dialog" aria-hidden="true">
@@ -29,28 +28,34 @@
     </footer>
 </section>
 <script type="text/javascript">
+  AJS.$(document).ready(function () {
+    $("#dialog-show-button").click(function (e) {
+      console.log("test");
+      e.preventDefault();
+      AJS.$.ajax({
+        type: 'GET',
+        timeout: 30000,
+        contentType: 'application/json',
+        url: '/dialog'
+      }).done(function (res, textStatus) {
+        AJS.flag({
+          close: 'auto',
+          type: 'success',
+          body: 'Sample Dialog.'
+        });
+        setTimeout(function () {
+            // we manually close the dialog on result of save logic
+            AP.dialog.close();
+        }, 2500);
+      })
+    });
+  });
+  /*
   $(document).ready(function () {
     $("#dialog-show-button").click(function (e) {
       e.preventDefault();
       AJS.dialog2("#demo-dialog").show();
     });
   });
-  /*
-  AJS.toInit(function () {
-    window.alert(99);
-    console.log('helo');
-    alert("hi");
-  });
-  AJS.$(document).ready(function () {  
-    AJS.$("#dialog-show-button").click(function(e) {
-        e.preventDefault();
-        AJS.dialog2("#demo-dialog").show();
-    });
-    ​
-    // Hides the dialog
-    AJS.$("#dialog-submit-button").click(function (e) {
-        e.preventDefault();
-        AJS.dialog2("#demo-dialog").hide();
-    });
-  }); */
+  */
 </script>

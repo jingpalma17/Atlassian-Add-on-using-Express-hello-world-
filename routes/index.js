@@ -58,6 +58,15 @@ module.exports = function (app, addon) {
         });
     });
 
+    // This is an example route that's used by the default "dialogs" module.
+    // Verify that the incoming request is authenticated with Atlassian Connect
+    app.get('/dialog', function (req, res) {
+        //this will render the template "project-page'.hbs"
+        res.render('dialog', {
+            title: 'Dialoag'
+        });
+    });
+
     // load any additional files you have in routes and apply those to the app
     {
         var fs = require('fs');

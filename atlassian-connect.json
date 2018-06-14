@@ -29,6 +29,7 @@
                     "value": "Hello World"
                 },
                 "url": "/hello-world",
+                "weight": 200,
                 "conditions": [{
                     "condition": "user_is_logged_in"
                 }]
