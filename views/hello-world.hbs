@@ -1,85 +1,212 @@
 {{!< layout}}
-
-<header class="aui-page-header">
-  <div class="aui-page-header-inner">
-    <div class="aui-page-header-main intro-header">
-      <h1>Hello {{fullname}}!</h1>
-      <p class="subtitle">Welcome to {{title}}</p>
-    </div>
-  </div>
-</header>
-<div class="aui-page-panel main-panel">
-  <div class="aui-page-panel-inner">
-    <section class="aui-page-panel-item">
-      <div class="aui-group">
-        <div class="aui-item">
-          <p>
-            Dialog sample no 1.
-          </p>
-          <p>
-            <button id="dialog-show-button1" class="aui-button aui-button-primary" href="#" target="_parent">
-              Click Me :)
-              <span class="aui-icon aui-icon-small aui-iconfont-devtools-arrow-right"></span>
-            </button>
-          </p>
-          <p>
-            Dialog sample no 2.
-          </p>
-            <button id="dialog-show-button2" class="aui-button aui-button-primary" href="#" target="_parent">
-              Click Me :)
-              <span class="aui-icon aui-icon-small aui-iconfont-devtools-arrow-right"></span>
-            </button>
-            <section id="demo-dialog" class="aui-dialog2 aui-dialog2-small aui-layer" role="dialog" aria-hidden="true">
-              <header class="aui-dialog2-header">
-                  <h2 class="aui-dialog2-header-main">Dialog 2</h2>
-                  <a class="aui-dialog2-header-close">
-                      <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
-                  </a>
-              </header>
-              <div class="aui-dialog2-content">
-                  <p>Blah blah blah blah blah blah blah blah.</p>
+<div id="page">
+  <header id="header" role="banner">
+      <nav class="aui-header" role="navigation">
+          <div class="aui-header-primary">
+              <h1 id="logo" class="aui-header-logo aui-header-logo-textonly"><a href="http://example.com/">Logo</a></h1>
+              <ul class="aui-nav">
+                  <li><a href="./aui-layout-simple.html">Simple Layout</a></li>
+                  <li><a href="./aui-layout-test-content.html">Layout with Test Content</a></li>
+                  <li><a href="./aui-layout-tabs.html">Tabs</a></li>
+                  <li class="selected"><a href="./aui-layout-groups.html">Group and Item</a></li>
+              </ul>
+          </div>                            
+          <div class="aui-header-secondary">
+              <ul class="aui-nav">
+                  <li><a href="http://example.com/">Nav</a></li>
+              </ul>
+          </div>                            
+      </nav>            
+  </header>
+  <section id="content" role="main">
+      <header class="aui-page-header">
+          <div class="aui-page-header-inner">
+              <div class="aui-page-header-main">
+                <h1>Hello {{fullname}}!</h1>
+                <p class="subtitle">Welcome to {{title}}</p>
               </div>
-              <footer class="aui-dialog2-footer">
-                  <div class="aui-dialog2-footer-actions">
-                      <button id="dialog-submit-button" class="aui-button aui-button-primary">Make it so</button>
-                  </div>
-              </footer>
-          </section>
-          <div class="aui-group">
-            <div class="aui-item">
-              <p>Blah blah blah blah blah blah blah blah blah blah blah.</p>
-              <p>Blah blah blah blah blah blah blah blah blah blah blah.</p>
-              <p>Blah blah blah blah blah blah blah blah blah blah blah.</p>
-              <p>Blah blah blah blah blah blah blah blah blah blah blah.</p>
-            </div>
-            <div class="aui-item">
-              <p>Blah blah blah blah blah blah blah blah blah blah blah.</p>
-              <p>Blah blah blah blah blah blah blah blah blah blah blah.</p>
-              <p>Blah blah blah blah blah blah blah blah blah blah blah.</p>
-              <p>Blah blah blah blah blah blah blah blah blah blah blah.</p>
-            </div>
-            <div class="aui-item">
-              <p>Blah blah blah blah blah blah blah blah blah blah blah.</p>
-              <p>Blah blah blah blah blah blah blah blah blah blah blah.</p>
-              <p>Blah blah blah blah blah blah blah blah blah blah blah.</p>
-              <p>Blah blah blah blah blah blah blah blah blah blah blah.</p>
-            </div>
-            <div class="aui-item">
-              <p>Blah blah blah blah blah blah blah blah blah blah blah.</p>
-              <p>Blah blah blah blah blah blah blah blah blah blah blah.</p>
-              <p>Blah blah blah blah blah blah blah blah blah blah blah.</p>
-              <p>Blah blah blah blah blah blah blah blah blah blah blah.</p>
-            </div>
           </div>
-          <p class="addon-data">
-            <code>
-            </code>
-          </p>   
-        </div>
-      </div>
-    </section>
-  </div>
-</div>
+      </header>
+      <div class="aui-page-panel">
+          <div id="toggles">Toggles for testing:</div>
+              <p>
+                Dialog sample no 1.
+              </p>
+              <p>
+                <button id="dialog-show-button1" class="aui-button aui-button-primary" href="#" target="_parent">
+                  Click Me :)
+                  <span class="aui-icon aui-icon-small aui-iconfont-devtools-arrow-right"></span>
+                </button>
+              </p>
+              <p>
+                Dialog sample no 2.
+              </p>
+                <button id="dialog-show-button2" class="aui-button aui-button-primary" href="#" target="_parent">
+                  Click Me :)
+                  <span class="aui-icon aui-icon-small aui-iconfont-devtools-arrow-right"></span>
+                </button>
+                <section id="demo-dialog" class="aui-dialog2 aui-dialog2-small aui-layer" role="dialog" aria-hidden="true">
+                  <header class="aui-dialog2-header">
+                      <h2 class="aui-dialog2-header-main">Dialog 2</h2>
+                      <a class="aui-dialog2-header-close">
+                          <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
+                      </a>
+                  </header>
+                  <div class="aui-dialog2-content">
+                      <p>Blah blah blah blah blah blah blah blah.</p>
+                  </div>
+                  <footer class="aui-dialog2-footer">
+                      <div class="aui-dialog2-footer-actions">
+                          <button id="dialog-submit-button" class="aui-button aui-button-primary">Make it so</button>
+                      </div>
+                  </footer>
+              </section>
+              <p><strong>NB:</strong> the grey boxes are purely for the purposes of this demo. In production the groups and items will not have any visual style applied.</p>
+              <h2>Unset widths = even spacing</h2>
+              <div class="aui-group">
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+              </div>
+              <div class="aui-group">
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+              </div>
+              <div class="aui-group">
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+              </div>
+              <div class="aui-group">
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+              </div>
+              <div class="aui-group">
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+              </div>
+              <div class="aui-group">
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+              </div>
+              <div class="aui-group">
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+              </div>			
+              <h2>Presets</h2>
+              <p>Split group (add <code>aui-group-split</code> to <code>aui-group</code>): two items only, aligment is left|right. Very common pattern in headers, where you want a heading on the left and nav/actions on the right.</p>
+              <div class="aui-group aui-group aui-group-split">
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+                  <div class="aui-item">
+                      <p>Content goes here.</p>
+                  </div>
+              </div>
+              <p>Trio group (add <code>aui-group-trio</code> to <code>aui-group</code>): three items only, alignment is left|centre|right. Useful for footers:</p>
+              <div class="aui-group aui-group-trio">
+                <div class="aui-item">
+                    <p>Content goes here.</p>
+                </div>
+                <div class="aui-item">
+                    <p>Content goes here.</p>
+                </div>
+                <div class="aui-item">
+                    <p>Content goes here.</p>
+                </div>
+              </div>
+          </div><!-- .content-panel -->			
+  </section><!-- #content -->
+</div><!-- #page -->
 <script type="text/javascript">
   AJS.$(function () {
     $("#dialog-show-button1").click(function (e) {

@@ -36,15 +36,26 @@ module.exports = function (app, addon) {
         res.render("configuration", {id : req.query.id, type : req.query.type });
     });
     
+    
     // This is an example route that's used by the default "jiraIssueTabPanels" module.
     // Verify that the incoming request is authenticated with Atlassian Connect
     app.get('/audit-trail', addon.checkValidToken(), async function (req, res) {
-        //this will render the template "audit-trail'.hbs"
-        res.render('audit-trail', {
-            title: 'Audit Trail',
-            issueKey: req.query.issueKey,
-            issueId: req.query.issueId
-        });
+        const httpClient = addon.httpClient(req);
+        let data = "";
+        
+        httpClient.get('/rest/api/2/issue/' + req.query.issueKey +'/properties/tasks',
+            function (err, response, body) {
+
+            data = JSON.parse(response.body).value;
+
+            //this will render the template "audit-trail'.hbs"
+            res.render('audit-trail', {
+                title: 'Audit Trail',
+                issueKey: req.query.issueKey,
+                issueId: req.query.issueId,
+                tasks: data.content
+            });
+        });  
     });
 
     // This is an example route that's used by the default "jiraProjectPages" module.
