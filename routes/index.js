@@ -15,7 +15,7 @@ module.exports = function (app, addon) {
             }
         });
     });
-
+    
     // This is an example route that's used by the default "generalPage" module.
     // Verify that the incoming request is authenticated with Atlassian Connect
     app.get('/hello-world', addon.authenticate(), function (req, res) {
@@ -37,32 +37,56 @@ module.exports = function (app, addon) {
     });
 
     // This is an example of a function that return promise
-    function doRequest(url, httpClient) {
+    function doRequest(url, httpClient) {        
         return new Promise(function (resolve, reject) {
             httpClient.get(url, function (error, res, body) {
+                //check if the request is valid
                 if (!error && res.statusCode == 200) {
-                    resolve(JSON.parse(body));
+                    resolve(res);
                 } else {
-                    reject(error);
+                    console.log(error); // print error to console
+                    // return error message and error status (404)
+                    resolve({
+                        error: error,
+                        statusCode: res.statusCode
+                    });        
                 }
             });
         });
+
     }
 
     // This is an example route that's used by the default "jiraIssueTabPanels" module.
     // Verify that the incoming request is authenticated with Atlassian Connect
     app.get('/audit-trail', addon.checkValidToken(), async function (req, res) {
         const httpClient = addon.httpClient(req);
+        let viewParams;
+        try {
+            let data = await doRequest('/rest/api/2/issue/' +             
+                req.query.issueKey +'/properties/tasks', httpClient);
+            
+            viewParams = {
+                title: 'Audit Trail',
+                issueKey: req.query.issueKey,
+                issueId: req.query.issueId,
+                tasks: []
+            }
 
-        let data = await doRequest('/rest/api/2/issue/' + 
-            req.query.issueKey +'/properties/tasks', httpClient);
+            // check if await request is valid
+            if(data.statusCode === 200) {
+                var task = JSON.parse(data.body).value;
+                viewParams.tasks = task.content
+            }
+        } catch (err) {
+            console.log(err); // print error to console
 
-        res.render('audit-trail', {
-            title: 'Audit Trail',
-            issueKey: req.query.issueKey,
-            issueId: req.query.issueId,
-            tasks: data.value.content
-        });
+            return res.status(500).send({
+                status: 500,
+                errors: "Error"
+            });
+        }
+
+        return res.render('audit-trail', viewParams);
     });
 
     // This is an example route that's used by the default "jiraProjectPages" module.
@@ -83,8 +107,9 @@ module.exports = function (app, addon) {
         res.render('dialog', {
             title: 'Dialoag'
         });
+        
     });
-
+    
     // load any additional files you have in routes and apply those to the app
     {
         var fs = require('fs');
