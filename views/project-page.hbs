@@ -27,11 +27,9 @@
 <div id="output"></div>
 
 <script type="text/javascript">
-    var templateContents = $("#template").html();
-    var popupTemplate = _.template(templateContents);
-    var rendered = popupTemplate({
+    var popupTemplate = _.template(AJS.$("#template").html())({
             content: "Hello!"
         });
 
-    $("#output").html(rendered);
+    AJS.$("#output").html(popupTemplate);
 </script>
