@@ -21,19 +21,17 @@
         </div>
     </footer>
 </section>
+<script type="text/template" id="template">
+    <%= content %>
+</script>
+<div id="output"></div>
+
 <script type="text/javascript">
- AJS.$(document).ready(function () {
-     alert();
-  AJS.$("#dialog-show-button").click(function(e) {
-      alert();
-      e.preventDefault();
-      AJS.dialog2("#demo-dialog").show();
-  });
-  ​
-  // Hides the dialog
-  AJS.$("#dialog-submit-button").click(function (e) {
-      e.preventDefault();
-      AJS.dialog2("#demo-dialog").hide();
-  });
-   });
+    var templateContents = $("#template").html();
+    var popupTemplate = _.template(templateContents);
+    var rendered = popupTemplate({
+            content: "Hello!"
+        });
+
+    $("#output").html(rendered);
 </script>
